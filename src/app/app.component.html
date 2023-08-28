@@ -1,0 +1,55 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Cat Listings
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+    <div class="search-label">Search by:</div>
+    <ion-select [(ngModel)]="searchOption">
+      <ion-select-option value="breed">Breed</ion-select-option>
+      <ion-select-option value="country">Country</ion-select-option>
+      <ion-select-option value="origin">Origin</ion-select-option>
+      <ion-select-option value="coat">Coat</ion-select-option>
+      <ion-select-option value="pattern">Pattern</ion-select-option>
+    </ion-select>
+  
+    <ion-grid class="cat-table">
+      <ion-row class="header-row">
+        <ion-col>BIL.</ion-col>
+        <ion-col>BREED</ion-col>
+        <ion-col>COUNTRY</ion-col>
+        <ion-col>ORIGIN</ion-col>
+        <ion-col>COAT</ion-col>
+        <ion-col>PATTERN</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let cat of filteredCats; let i = index" class="data-row">
+        <ion-col>{{ i + 1 }}</ion-col>
+        <ion-col class="breed-col">{{ cat.breed }}</ion-col>
+        <ion-col>{{ cat.country }}</ion-col>
+        <ion-col>{{ cat.origin }}</ion-col>
+        <ion-col class="coat-col">{{ cat.coat }}</ion-col>
+        <ion-col class="blurry-pattern">{{ cat.pattern }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <div class="pagination">
+      <button
+        [disabled]="currentPage === 1"
+        (click)="onPageChange(currentPage - 1)"
+      >
+        Previous
+      </button>
+      <span>Page {{ currentPage }} of {{ getTotalPages() }}</span>
+      <button
+        [disabled]="currentPage === getTotalPages()"
+        (click)="onPageChange(currentPage + 1)"
+      >
+        Next
+      </button>
+    </div>
+  </ion-content>
