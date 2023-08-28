@@ -8,7 +8,8 @@
   </ion-header>
 
   <ion-content>
-    <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+    <ion-searchbar (ionInput)="search($event)"><ion-icon name="paw-outline" slot="start"></ion-icon>
+    </ion-searchbar>
     <div class="search-label">Search by:</div>
     <ion-select [(ngModel)]="searchOption">
       <ion-select-option value="breed">Breed</ion-select-option>
